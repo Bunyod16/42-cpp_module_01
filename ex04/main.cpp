@@ -34,12 +34,16 @@ int main(int argc, char **argv)
         std::cout << "Error: file " + std::string(argv[1]) + " does not exist";
         return 0;
     }
+    if (access(argv[1], R_OK) != 0) {
+        std::cout << "File " << argv[1] << " does not has read permissions" << std::endl;
+        return 0;
+    }
     std::string filename(argv[1]);
     writefile.open(filename + ".replace");
     readfile.open(filename);
     while (std::getline(readfile, buffer)) {
         replace(buffer, argv[2], argv[3]);
-        writefile << buffer;
+        writefile << buffer << std::endl;
         std::cout << readfile.peek() << std::endl;
     }
     writefile.close();
