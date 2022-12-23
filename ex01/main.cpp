@@ -5,7 +5,7 @@ int main(void) {
     Zombie  *z;
     int     n;
 
-    n = 5;
+    n = -4;
     z = zombieHorde(n, "Uncle");
     int i = -1;
     while (++i < n) {
